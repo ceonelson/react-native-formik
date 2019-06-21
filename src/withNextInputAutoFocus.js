@@ -91,15 +91,24 @@ export const withNextInputAutoFocusInput = Input => {
 
     render() {
       const { getReturnKeyType } = this.context;
-      const { name } = this.props;
-
+      const { name, multiline } = this.props;
+            
       return (
-        <Input
-          returnKeyType={getReturnKeyType(name)}
-          {...this.props}
-          ref={this.setInput}
-          onSubmitEditing={this.onSubmitEditing}
+        <>
+        {multiline ? (
+         <Input
+         {...this.props}
+         ref={this.setInput}
         />
+      ) : (
+        <Input
+        {...this.props}
+        ref={this.setInput}
+        returnKeyType={getReturnKeyType(name)}
+        onSubmitEditing={this.onSubmitEditing}
+       />
+       )}
+      </>              
       );
     }
   }
